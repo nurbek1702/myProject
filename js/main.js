@@ -3,6 +3,7 @@ let inpName = document.querySelector("#inpName");
 let inpMemory = document.querySelector("#inpMemory");
 let inpImage = document.querySelector("#inpImage");
 let inpPrice = document.querySelector("#inpPrice");
+let inpCategories = document.querySelector("#inpCategories")
 let btnAdd = document.querySelector("#btnAdd");
 let btnOpenForm = document.querySelector("#flush-collapseOne");
 let sectionProducts = document.querySelector("#sectionProducts");
@@ -12,14 +13,14 @@ let prevBtn = document.querySelector("#prevBtn");
 let nextBtn = document.querySelector("#nextBtn");
 let inpSearch = document.querySelector("#inpSearch");
 let searchValue = "";
-//Переменная для детального обзора
 let detailsContainer = document.querySelector(".details");
 btnAdd.addEventListener("click", () => {
   if (
     !inpName.value.trim() ||
     !inpMemory.value.trim() ||
     !inpImage.value.trim() ||
-    !inpPrice.value.trim()
+    !inpPrice.value.trim() ||
+    !inpCategories.value.trim()
   ) {
     alert("Заполните все поля!");
     return;
@@ -29,6 +30,7 @@ btnAdd.addEventListener("click", () => {
     productMemory: inpMemory.value,
     productImage: inpImage.value,
     productPrice: inpPrice.value,
+    productCategories: inpCategories.value
   };
   createProducts(newProduct);
   readProducts();
@@ -47,6 +49,7 @@ function createProducts(product) {
   inpMemory.value = "";
   inpImage.value = "";
   inpPrice.value = "";
+  inpCategories.value = "";
   btnOpenForm.classList.toggle("show");
 }
 //! =====================READ=======================
@@ -70,6 +73,7 @@ async function readProducts() {
         <h5 class="card-title">${item.productName}</h5>
         <p class="card-text">${item.productMemory}</p>
         <span class="card-text">${item.productPrice}</span>
+        <span class="card-text">${item.productCategories}</span>
         <div>
         <button class="btn btn-outline-success btnBuy" data-id="${item.id}">Купить</button>
         <button class="detailsCard btn btn-outline-warning btnDetails" id="${item.id}">Обзор</button>
@@ -109,6 +113,7 @@ let editInpName = document.querySelector("#editInpName");
 let editInpMemory = document.querySelector("#editInpMemory");
 let editInpImage = document.querySelector("#editInpImage");
 let editInpPrice = document.querySelector("#editInpPrice");
+let editInpCategories = document.querySelector("#editInpCategories")
 let editBtnSave = document.querySelector("#editBtnSave");
 
 document.addEventListener("click", (e) => {
@@ -124,6 +129,7 @@ document.addEventListener("click", (e) => {
         editInpMemory.value = data.productMemory;
         editInpImage.value = data.productImage;
         editInpPrice.value = data.productPrice;
+        editInpCategories.value = data.productCategories
         editBtnSave.setAttribute("id", data.id);
       });
   }
@@ -134,6 +140,7 @@ editBtnSave.addEventListener("click", () => {
     productMemory: editInpMemory.value,
     productImage: editInpImage.value,
     productPrice: editInpPrice.value,
+    productCategories: editInpCategories.value
   };
   editProduct(editedProduct, editBtnSave.id);
 });
@@ -247,6 +254,7 @@ function displayDetails(data) {
     <h2>${data.productName}</h2>
     <span>${data.productMemory}</span>
     <p>${data.productPrice}</p>
+    <p>${data.productCategories}</p>
     <button class="btn btn-outline-warning btnCloseDetails">Скрыть</button>
   `;
   detailsContainer.style.display = "block";
@@ -260,25 +268,22 @@ function closeDetails() {
   detailsContainer.style.display = "none";
   sectionProducts.style.display = "block";
 }
-// !====================== Регистрация ======================
+//!================ Регистрация ==============
+
 let inpUsername = document.querySelector("#inpUsername");
 let inpPassword = document.querySelector("#inpPassword");
 let btnRegister = document.querySelector("#btnRegister");
-
 btnRegister.addEventListener("click", () => {
   if (!inpUsername.value.trim() || !inpPassword.value.trim()) {
     alert("Заполните все поля!");
     return;
   }
-
   let newUser = {
     username: inpUsername.value,
     password: inpPassword.value,
   };
-
   registerUser(newUser);
 });
-
 function registerUser(newUser) {
   fetch("http://localhost:3001/users", {
     method: "POST",
@@ -298,4 +303,3 @@ function registerUser(newUser) {
       alert("Ошибка при регистрации пользователя. Пожалуйста, попробуйте снова.");
     });
 }
-
