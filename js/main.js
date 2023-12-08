@@ -260,3 +260,42 @@ function closeDetails() {
   detailsContainer.style.display = "none";
   sectionProducts.style.display = "block";
 }
+// !====================== Регистрация ======================
+let inpUsername = document.querySelector("#inpUsername");
+let inpPassword = document.querySelector("#inpPassword");
+let btnRegister = document.querySelector("#btnRegister");
+
+btnRegister.addEventListener("click", () => {
+  if (!inpUsername.value.trim() || !inpPassword.value.trim()) {
+    alert("Заполните все поля!");
+    return;
+  }
+
+  let newUser = {
+    username: inpUsername.value,
+    password: inpPassword.value,
+  };
+
+  registerUser(newUser);
+});
+
+function registerUser(newUser) {
+  fetch("http://localhost:3001/users", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(newUser),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Пользователь успешно зарегистрирован!");
+      inpUsername.value = "";
+      inpPassword.value = "";
+    })
+    .catch((error) => {
+      console.error("Ошибка при регистрации пользователя:", error);
+      alert("Ошибка при регистрации пользователя. Пожалуйста, попробуйте снова.");
+    });
+}
+
