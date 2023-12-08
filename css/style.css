@@ -1,6 +1,4 @@
-body{
-    background-color: bisque;
-}
+
 .card:hover {
   background-color: rgb(139, 139, 143);
   transform: scale(1.06);
@@ -42,6 +40,9 @@ body{
 }
 .container{
     text-align: center;
+    font-size: 12px;
+    background-color: rgb(213, 205, 205);
+    width: 100%;
 }
 .by{
     width: 15px;
