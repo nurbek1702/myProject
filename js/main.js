@@ -72,7 +72,7 @@ async function readProducts() {
         <span class="card-text">${item.productPrice}</span>
         <div>
         <button class="btn btn-outline-success btnBuy" data-id="${item.id}">Купить</button>
-        <button class="detailsCard btn btn-outline-warning btnDetails" id="${item.id}">Details</button>
+        <button class="detailsCard btn btn-outline-warning btnDetails" id="${item.id}">Обзор</button>
         <button class="btn btn-outline-danger btnDelete" id="${item.id}" >
         Удалить
         </button>
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let checkoutBtn = document.querySelector("#btnCheckout");
   checkoutBtn.addEventListener("click", function () {
     let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    alert("Ваш заказ оформлен!");
+    alert("Заказ оформлен! В ближайшее время с вами свяжутся наши специалисты");
     storedCart = [];
     localStorage.setItem("cart", JSON.stringify(storedCart));
     updateCart();
@@ -247,7 +247,7 @@ function displayDetails(data) {
     <h2>${data.productName}</h2>
     <span>${data.productMemory}</span>
     <p>${data.productPrice}</p>
-    <button class="btn btn-outline-warning btnCloseDetails">Закрыть</button>
+    <button class="btn btn-outline-warning btnCloseDetails">Скрыть</button>
   `;
   detailsContainer.style.display = "block";
   sectionProducts.style.display = "none";
