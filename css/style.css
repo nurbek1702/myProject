@@ -1,4 +1,6 @@
-
+body{
+    background-color: bisque;
+}
 .card:hover {
   background-color: rgb(139, 139, 143);
   transform: scale(1.06);
@@ -68,9 +70,6 @@
 .shopping{
     color: white;
 }
-.details {
-    width: 200px;
-}
 .cart-container{
-    color: white;
+    color: rgb(217, 230, 28);
 }
