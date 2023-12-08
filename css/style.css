@@ -1,4 +1,6 @@
-
+body{
+    background-color: bisque;
+}
 .card:hover {
   background-color: rgb(139, 139, 143);
   transform: scale(1.06);
@@ -52,7 +54,12 @@
 }
 #prevBtn{
     border: 1px;
-    border-radius: 30%;
+    border-radius: 3%;
+}
+#btnRegister{
+    border: 1px;
+    border-radius: 3%;
+    color: white;
 }
 #nextBtn{
     border: 1px;
